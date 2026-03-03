@@ -1,111 +1,69 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ZapChats • Manutenção</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ZapChats • Em manutenção</title>
   <style>
     :root{
-      --bg:#0b1220;
-      --card:#0f1a30;
-      --text:#e5e7eb;
-      --muted:#9ca3af;
-      --accent:#22c55e;
-      --border:rgba(255,255,255,.08);
+      --bg:#0b1220; --card:#0f1a2f; --fg:#e5e7eb; --muted:#9ca3af;
+      --accent:#22c55e; --accent2:#10b981; --border:rgba(255,255,255,.08);
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
-      margin:0;
+      margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background: radial-gradient(1200px 600px at 20% 10%, rgba(34,197,94,.18), transparent 60%),
-                  radial-gradient(900px 500px at 90% 30%, rgba(16,185,129,.12), transparent 55%),
-                  var(--bg);
-      color:var(--text);
-      display:grid;
-      place-items:center;
-      padding:24px;
+      color:var(--fg);
+      background:
+        linear-gradient(90deg,var(--accent) 0%, #16a34a 50%, var(--accent2) 100%) 0 0/100% 6px no-repeat,
+        radial-gradient(1200px 800px at 50% -10%, rgba(34,197,94,.22), transparent 60%),
+        var(--bg);
+      padding:28px;
     }
     .card{
-      width:min(720px, 100%);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      width:min(680px, 100%);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), transparent 40%), var(--card);
       border:1px solid var(--border);
       border-radius:18px;
-      padding:28px;
-      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      padding:22px;
+      box-shadow:0 20px 60px rgba(0,0,0,.45);
     }
-    .top{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:10px;
-    }
+    .top{display:flex;gap:14px;align-items:center;margin-bottom:10px}
     .logo{
       width:44px;height:44px;border-radius:14px;
-      background:conic-gradient(from 210deg, #22c55e, #10b981, #16a34a, #22c55e);
-      box-shadow:0 10px 25px rgba(34,197,94,.25);
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:grid;place-items:center;
+      font-weight:800;color:#052012;
     }
-    h1{
-      font-size:20px;
-      margin:0;
-    }
-    p{
-      margin:10px 0 0;
-      color:var(--muted);
-      line-height:1.6;
-      font-size:14px;
-    }
-    .row{
-      margin-top:18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
+    h1{margin:0;font-size:20px}
+    p{margin:8px 0 0;color:var(--muted);line-height:1.55}
+    .actions{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px}
     a.btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      text-decoration:none;
-      color:var(--text);
-      background:rgba(0,0,0,.12);
-      font-size:14px;
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:999px;text-decoration:none;
+      border:1px solid var(--border);color:var(--fg);
+      background:rgba(255,255,255,.03);
     }
-    a.btn.primary{
-      border-color:rgba(34,197,94,.35);
-      background:rgba(34,197,94,.14);
-    }
-    .hint{
-      margin-top:16px;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px dashed rgba(255,255,255,.14);
-      color:var(--muted);
-      font-size:13px;
-    }
-    code{color:#d1fae5}
+    a.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#052012; border-color:transparent; font-weight:700}
+    .small{margin-top:12px;font-size:12px;color:rgba(255,255,255,.55)}
   </style>
 </head>
 <body>
   <div class="card">
     <div class="top">
-      <div class="logo" aria-hidden="true"></div>
+      <div class="logo">ZC</div>
       <div>
-        <h1>ZapChats está temporariamente indisponível</h1>
-        <p>Estamos realizando ajustes/atualização. Tente novamente em alguns instantes.</p>
+        <h1>Sistema em manutenção</h1>
+        <p>Estamos reiniciando/atualizando o ZapChats. Isso costuma durar poucos instantes.</p>
       </div>
     </div>
 
-    <div class="row">
+    <div class="actions">
       <a class="btn primary" href="/">Tentar novamente</a>
-      <a class="btn" href="/__alive">Status do proxy</a>
+      <a class="btn" href="https://wa.me/SEU_NUMERO_AQUI" target="_blank" rel="noopener">Falar no WhatsApp</a>
     </div>
 
-    <div class="hint">
-      Dica técnica: se você é admin, teste <code>/__alive</code> (proxy) e o <code>/healthz</code> da API quando voltar.
-    </div>
+    <div class="small">Se persistir, avise o suporte com o horário e o print da tela.</div>
   </div>
 </body>
 </html>
