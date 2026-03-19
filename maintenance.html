@@ -3,28 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Manutenção | ZapChat</title>
+  <title>Atualizando | ZapChat</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.3/dist/dotlottie-wc.js" type="module"></script>
+  
   <style>
     :root {
-      --bg: #09090b;
-      --card-bg: rgba(24, 24, 27, 0.65);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text-main: #f8fafc;
-      --text-muted: #a1a1aa;
-      --accent-green: #10b981;
-      --accent-blue: #3b82f6;
+      --bg-color: #f0f9ff;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --border: #e2e8f0;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
     }
 
     body {
@@ -32,155 +34,70 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--bg);
+      /* Fundo com um gradiente azul bem suave e amigável */
+      background: linear-gradient(135deg, var(--bg-color) 0%, #e0f2fe 100%);
       color: var(--text-main);
       padding: 24px;
-      position: relative;
-      overflow: hidden;
     }
 
-    /* Fundo animado moderno (Glows) */
-    .bg-glow {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.15;
-      z-index: 0;
-      animation: float 10s infinite ease-in-out alternate;
-    }
-
-    .glow-1 {
-      width: 400px;
-      height: 400px;
-      background: var(--accent-blue);
-      top: -100px;
-      left: -100px;
-    }
-
-    .glow-2 {
-      width: 300px;
-      height: 300px;
-      background: var(--accent-green);
-      bottom: -50px;
-      right: -50px;
-      animation-delay: -5s;
-    }
-
-    @keyframes float {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(30px, 50px) scale(1.1); }
-    }
-
-    /* Estrutura do Card */
+    /* Card Clean e Minimalista */
     .card {
-      position: relative;
-      z-index: 1;
       width: 100%;
-      max-width: 520px;
+      max-width: 480px;
       background: var(--card-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--card-border);
+      border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 48px 40px;
-      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+      padding: 40px 32px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
       text-align: center;
-      animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes slideUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Ícone do topo (Logo Placeholder) */
-    .icon-wrapper {
-      display: inline-flex;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Container do Lottie para não quebrar o layout */
+    .lottie-container {
+      margin-top: -20px;
+      margin-bottom: 16px;
+      width: 100%;
+      max-width: 280px; /* Controla o tamanho máximo da animação */
+      display: flex;
       justify-content: center;
-      width: 64px;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      margin-bottom: 24px;
-      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.05);
-    }
-
-    .icon-wrapper svg {
-      width: 32px;
-      height: 32px;
-      color: var(--text-main);
-    }
-
-    /* Tag de Status */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: 999px;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.2);
-      color: var(--accent-green);
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 24px;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-green);
-      position: relative;
-      box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-    }
-
-    .dot::after {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      border: 2px solid var(--accent-green);
-      opacity: 0;
-      animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(0.5); opacity: 1; }
-      100% { transform: scale(1.5); opacity: 0; }
     }
 
     /* Textos */
     h1 {
-      margin-bottom: 16px;
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 700;
       letter-spacing: -0.03em;
-      color: #ffffff;
+      margin-bottom: 12px;
+      color: var(--text-main);
     }
 
     p {
-      margin-bottom: 32px;
-      color: var(--text-muted);
       font-size: 16px;
       line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 32px;
     }
 
     p strong {
-      color: var(--text-main);
-      font-weight: 600;
+      color: var(--primary);
     }
 
     /* Botões */
     .actions {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-bottom: 32px;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 24px;
     }
 
     .btn {
@@ -188,123 +105,98 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 14px 28px;
+      padding: 14px 24px;
       border-radius: 12px;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 15px;
       text-decoration: none;
       transition: all 0.2s ease;
+      width: 100%;
     }
 
     .btn-primary {
-      background: var(--text-main);
-      color: var(--bg);
-      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.1);
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
     }
 
     .btn-primary:hover {
+      background: var(--primary-hover);
       transform: translateY(-2px);
-      background: #ffffff;
-      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.03);
+      background: #ffffff;
       color: var(--text-main);
-      border: 1px solid var(--card-border);
+      border: 1px solid var(--border);
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.15);
+      background: #f8fafc;
+      border-color: #cbd5e1;
     }
 
-    /* Rodapé Técnico */
+    /* Rodapé Técnico super discreto */
     .footer-info {
-      padding-top: 24px;
-      border-top: 1px solid var(--card-border);
+      width: 100%;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
       font-size: 13px;
       color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .footer-info .row {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     code {
-      font-family: 'ui-monospace', 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.05);
+      background: #f1f5f9;
       padding: 4px 8px;
       border-radius: 6px;
+      font-family: ui-monospace, monospace;
+      color: var(--text-main);
+      font-weight: 600;
       font-size: 12px;
-      border: 1px solid var(--card-border);
     }
 
+    /* Responsividade para colocar os botões lado a lado no PC */
     @media (min-width: 480px) {
       .actions {
         flex-direction: row;
-        justify-content: center;
-      }
-      .btn {
-        width: auto;
-        min-width: 180px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="bg-glow glow-1"></div>
-  <div class="bg-glow glow-2"></div>
 
   <main class="card">
-    <div class="icon-wrapper">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-      </svg>
-    </div>
-
-    <div class="badge">
-      <span class="dot"></span>
-      Sistemas em atualização
+    
+    <div class="lottie-container">
+      <dotlottie-wc 
+        src="https://lottie.host/8bf6d774-09bb-4771-8e10-923ebd5d587b/0lYmjhMV7y.lottie" 
+        style="width: 100%; height: 250px;" 
+        autoplay 
+        loop>
+      </dotlottie-wc>
     </div>
     
-    <h1>Voltamos logo.</h1>
+    <h1>Estamos atualizando para você.</h1>
     
     <p>
-      O <strong>ZapChat</strong> está passando por uma manutenção programada para melhorar sua experiência. 
-      Agradecemos a paciência.
+      O <strong>ZapChat</strong> está passando por melhorias nos bastidores para deixar tudo mais rápido e seguro. Voltamos em alguns instantes!
     </p>
 
     <div class="actions">
-      <a class="btn btn-primary" href="javascript:location.reload()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-        Recarregar
-      </a>
-      <a class="btn btn-secondary" href="/__alive">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        Status
-      </a>
+      <a class="btn btn-primary" href="javascript:location.reload()">Recarregar página</a>
+      <a class="btn btn-secondary" href="/__alive">Ver status</a>
     </div>
 
     <div class="footer-info">
-      <div class="row">
-        <span>Sessão</span>
-        <code>#ZC-{{request_id}}</code>
-      </div>
-      <div class="row">
-        <span>Gateway (Nginx)</span>
-        <code>502 / 503 Upstream</code>
-      </div>
+      <span>Sessão: <code>#ZC-{{request_id}}</code></span>
+      <span>Gateway: <code>502 / 503</code></span>
     </div>
+
   </main>
+
 </body>
 </html>
